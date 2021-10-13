@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Lab1
+namespace Lab1_silnik_krokowy
 {
     static class Program
     {

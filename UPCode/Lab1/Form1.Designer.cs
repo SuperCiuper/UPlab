@@ -1,4 +1,4 @@
-﻿namespace Lab1
+﻿namespace Lab1_silnik_krokowy
 {
     partial class Form1
     {

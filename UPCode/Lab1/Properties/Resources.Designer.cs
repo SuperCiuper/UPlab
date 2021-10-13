@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace Lab1.Properties
+namespace Lab1_silnik_krokowy.Properties
 {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.

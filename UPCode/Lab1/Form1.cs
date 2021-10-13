@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using FTD2XX_NET;
 using System.Threading;
 
-namespace Lab1
+namespace Lab1_silnik_krokowy
 {
     public partial class Form1 : Form
     {
