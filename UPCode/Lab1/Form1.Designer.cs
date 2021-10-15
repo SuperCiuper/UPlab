@@ -230,7 +230,7 @@
             this.buttonDance.TabIndex = 15;
             this.buttonDance.Text = "Dance";
             this.buttonDance.UseVisualStyleBackColor = true;
-            this.buttonDance.Click += new System.EventHandler(this.button1_Click);
+            this.buttonDance.Click += new System.EventHandler(this.buttonDance_Click);
             // 
             // Form1
             // 

@@ -1,0 +1,11 @@
+C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\bin\Debug\Lab1.exe.config
+C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\bin\Debug\Lab1.exe
+C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\bin\Debug\Lab1.pdb
+C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\bin\Debug\FTDI2XX.dll
+C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\obj\Debug\Lab1-silnik_krokowy.csproj.AssemblyReference.cache
+C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\obj\Debug\Lab1_silnik_krokowy.Form1.resources
+C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\obj\Debug\Lab1.Properties.Resources.resources
+C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\obj\Debug\Lab1-silnik_krokowy.csproj.GenerateResource.cache
+C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\obj\Debug\Lab1-silnik_krokowy.csproj.CoreCompileInputs.cache
+C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\obj\Debug\Lab1.exe
+C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\obj\Debug\Lab1.pdb

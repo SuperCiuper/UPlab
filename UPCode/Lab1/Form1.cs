@@ -38,7 +38,7 @@ namespace Lab1_silnik_krokowy
             }
             catch (Exception error)
             {
-                richTextBoxOutput.AppendText("Connection error \n");
+                richTextBoxOutput.AppendText("Connection error - " + error + "\n");
             }
         }
 
@@ -108,9 +108,10 @@ namespace Lab1_silnik_krokowy
                     instruction[0] = motorTwo[currentPosition];
 
                 if (connected)
+                {
                     device.Write(instruction, 1, ref bytesToBeWritten);
-
-                Thread.Sleep(Convert.ToInt32(sleep));
+                    Thread.Sleep(Convert.ToInt32(sleep));
+                }
 
             }
             if (connected)
@@ -161,16 +162,17 @@ namespace Lab1_silnik_krokowy
                 instruction[0] = Convert.ToByte(motorOne[actPosition] + motorTwo[currentPosition]);
 
                 if (connected)
+                {
                     device.Write(instruction, 1, ref bytesToBeWritten);
-
-                Thread.Sleep(Convert.ToInt32(sleep));
+                    Thread.Sleep(Convert.ToInt32(sleep));
+                }
 
             }
             if (connected)
                 device.Write(end, 1, ref bytesToBeWritten);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonDance_Click(object sender, EventArgs e)
         {
             twoSideMove(10, false, false);
             twoSideMove(10, true, false);
