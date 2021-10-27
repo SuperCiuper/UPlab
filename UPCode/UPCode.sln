@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31727.386
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1622
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab1-silnik_krokowy", "Lab1\Lab1-silnik_krokowy.csproj", "{E541C118-CA9B-4F36-A8B4-FD7C5EC6D5A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2-czytnik_kaart_chipowych", "Lab2-czytnik_kaart_chipowych\Lab2-czytnik_kaart_chipowych.csproj", "{24C9C5B1-AF32-4CF1-AA90-0BC4F12CCCCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2-czytnik_kart_chipowych", "Lab2-czytnik_kaart_chipowych\Lab2-czytnik_kart_chipowych.csproj", "{24C9C5B1-AF32-4CF1-AA90-0BC4F12CCCCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{CDB7B87C-AFA6-4E8F-80BB-5371DF7B80DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{24C9C5B1-AF32-4CF1-AA90-0BC4F12CCCCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24C9C5B1-AF32-4CF1-AA90-0BC4F12CCCCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24C9C5B1-AF32-4CF1-AA90-0BC4F12CCCCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDB7B87C-AFA6-4E8F-80BB-5371DF7B80DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB7B87C-AFA6-4E8F-80BB-5371DF7B80DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB7B87C-AFA6-4E8F-80BB-5371DF7B80DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB7B87C-AFA6-4E8F-80BB-5371DF7B80DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

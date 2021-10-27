@@ -1,40 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using PCSC;
 using PCSC.Utils;
 using System.Threading;
 
-namespace Lab2_czytnik_kaart_chipowych
+namespace ConsoleApp1
 {
-    public partial class Form1 : Form
+    class Program
     {
         private static SCardError error;
         private static SCardReader reader;
         private static System.IntPtr intptr;
         private static SCardContext context;
-        byte[] command;
-
-        public Form1()
+        static byte[] command;
+        static void Main(string[] args)
         {
-            InitializeComponent();
-        }
-
-        private void buttonConnect_Click(object sender, EventArgs e)
-        {
-            context = new SCardContext(); 
+            context = new SCardContext();
             context.Establish(SCardScope.System);
             var readerList = context.GetReaders();
 
             if (readerList.Length <= 0)
             {
-                richTextBoxOutput.AppendText("No readers found, aborting \n");
+                Console.Write("No readers found, aborting \n");
                 return;
             }
 
@@ -42,26 +32,29 @@ namespace Lab2_czytnik_kaart_chipowych
             error = reader.Connect(readerList[0], SCardShareMode.Shared, SCardProtocol.T0 | SCardProtocol.T1);
             if (error != SCardError.Success)
             {
-                richTextBoxOutput.AppendText("SCardError: " + error +  "\n");
+                Console.Write("SCardError: " + error + "\n");
                 return;
             }
 
             if (reader.ActiveProtocol == SCardProtocol.T0)
             {
                 intptr = SCardPCI.T0;
-                richTextBoxOutput.AppendText("Current protocol is: T0 \n");
+                Console.Write("Current protocol is: T0 \n");
             }
             else if (reader.ActiveProtocol == SCardProtocol.T1)
             {
                 intptr = SCardPCI.T1;
-                richTextBoxOutput.AppendText("Current protocol is: T1 \n");
+                Console.Write("Current protocol is: T1 \n");
             }
             else
-                richTextBoxOutput.AppendText("This protocol is not implemented");
-            
+                Console.Write("This protocol is not implemented");
+
+            XD();
+
+            while (true) ;
         }
 
-        private void buttonSelectSMS_Click(object sender, EventArgs e)
+        static void XD()
         {
             //select telecom
             command = new byte[] { 0xA0, 0xA4, 0x00, 0x00, 0x02, 0x7F, 0x10 };
@@ -87,10 +80,10 @@ namespace Lab2_czytnik_kaart_chipowych
             //get response
             command = new byte[] { 0xA0, 0xC0, 0x00, 0x00, 0x16 };
             sendCommand("GET RESPONSE");
-
+            Console.WriteLine("XDDDD");
         }
 
-        private void sendCommand(String action)
+        static void sendCommand(String action)
         {
             SCardPCI receuvePci = new SCardPCI();
             byte[] received = new byte[256];
@@ -98,21 +91,35 @@ namespace Lab2_czytnik_kaart_chipowych
             error = reader.Transmit(intptr, command, receuvePci, ref received);
             if (error != SCardError.Success)
             {
-                richTextBoxOutput.AppendText("Send command " + action + " failed: " + error + "\n");
+                Console.Write("Send command " + action + " failed: " + error + "\n");
             }
-            else
+            writeResponse(received, action);
+            /*else
             {
-                //string XD = Encoding.ASCII.GetString(received);
-                //MessageBox.Show(XD);
-                richTextBoxOutput.AppendText("Response: " 
-                   // + XD
-                );
+                string s = System.Text.Encoding.UTF8.GetString(received, 0, received.Length);
+                richTextBoxOutput.AppendText("Response: " + s);
                 richTextBoxOutput.AppendText("\n");
+                richTextBoxOutput.AppendText(received.Length + "\n");
                 for (int q=0; q<received.Length; ++q)
                     richTextBoxOutput.AppendText(received[q] + "  ");
 
                 richTextBoxOutput.AppendText("\n");
+            }*/
+        }
+        static void writeResponse(byte[] received, String responseCode)
+        {
+            Console.Write(responseCode + ": ");
+            Console.WriteLine(Encoding.ASCII.GetString(received));
+            Console.Write("{0:X2}", received[0]);
+            Console.WriteLine();
+            for (int i = 1; i < received.Length ; i++)
+            {
+                 Console.Write("{0:X2}", received[i]);
+                // Console.Write(received[i]);
+                if (i % 7 == 0) Console.WriteLine();
+
             }
+            Console.WriteLine();
         }
     }
 }

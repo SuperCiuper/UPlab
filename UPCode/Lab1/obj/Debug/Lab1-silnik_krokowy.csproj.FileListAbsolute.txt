@@ -9,3 +9,15 @@ C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\obj\Debug\La
 C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\obj\Debug\Lab1-silnik_krokowy.csproj.CoreCompileInputs.cache
 C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\obj\Debug\Lab1.exe
 C:\Users\SuperCiuper\Documents\GitHub\lab-1-SuperCiuper\UPCode\Lab1\obj\Debug\Lab1.pdb
+C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab1\bin\Debug\Lab1.exe.config
+C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab1\bin\Debug\Lab1.exe
+C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab1\bin\Debug\Lab1.pdb
+C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab1\bin\Debug\FTDI2XX.dll
+C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab1\obj\Debug\Lab1-silnik_krokowy.csprojAssemblyReference.cache
+C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab1\obj\Debug\Lab1_silnik_krokowy.Form1.resources
+C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab1\obj\Debug\Lab1.Properties.Resources.resources
+C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab1\obj\Debug\Lab1-silnik_krokowy.csproj.GenerateResource.cache
+C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab1\obj\Debug\Lab1-silnik_krokowy.csproj.CoreCompileInputs.cache
+C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab1\obj\Debug\Lab1-silnik_krokowy.csproj.CopyComplete
+C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab1\obj\Debug\Lab1.exe
+C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab1\obj\Debug\Lab1.pdb
