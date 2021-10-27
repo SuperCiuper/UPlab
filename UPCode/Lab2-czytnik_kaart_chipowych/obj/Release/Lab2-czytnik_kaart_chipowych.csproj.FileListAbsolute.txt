@@ -1,0 +1,12 @@
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab2-czytnik_kaart_chipowych\bin\Release\Lab2-czytnik_kaart_chipowych.exe.config
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab2-czytnik_kaart_chipowych\bin\Release\Lab2-czytnik_kaart_chipowych.exe
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab2-czytnik_kaart_chipowych\bin\Release\Lab2-czytnik_kaart_chipowych.pdb
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab2-czytnik_kaart_chipowych\bin\Release\PCSC.dll
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab2-czytnik_kaart_chipowych\bin\Release\PCSC.pdb
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab2-czytnik_kaart_chipowych\bin\Release\PCSC.xml
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab2-czytnik_kaart_chipowych\obj\Release\Lab2_czytnik_kaart_chipowych.Form1.resources
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab2-czytnik_kaart_chipowych\obj\Release\Lab2_czytnik_kaart_chipowych.Properties.Resources.resources
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab2-czytnik_kaart_chipowych\obj\Release\Lab2-czytnik_kaart_chipowych.csproj.GenerateResource.cache
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab2-czytnik_kaart_chipowych\obj\Release\Lab2-czytnik_kaart_chipowych.csproj.CoreCompileInputs.cache
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab2-czytnik_kaart_chipowych\obj\Release\Lab2-czytnik_kaart_chipowych.exe
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab2-czytnik_kaart_chipowych\obj\Release\Lab2-czytnik_kaart_chipowych.pdb
