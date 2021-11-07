@@ -83,7 +83,6 @@ namespace Lab2_czytnik_kaart_chipowych
             command = new byte[] { 0xA0, 0xB2, 0x01, 0x04, 0xB0 };
             sendCommand("READ RECORD");
 
-
             //get response
             command = new byte[] { 0xA0, 0xC0, 0x00, 0x00, 0x16 };
             sendCommand("GET RESPONSE");
@@ -102,11 +101,7 @@ namespace Lab2_czytnik_kaart_chipowych
             }
             else
             {
-                //string XD = Encoding.ASCII.GetString(received);
-                //MessageBox.Show(XD);
-                richTextBoxOutput.AppendText("Response: " 
-                   // + XD
-                );
+                richTextBoxOutput.AppendText("Response: ");
                 richTextBoxOutput.AppendText("\n");
                 for (int q=0; q<received.Length; ++q)
                     richTextBoxOutput.AppendText(received[q] + "  ");
