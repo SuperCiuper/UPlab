@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Media;
 using System.Text;
 using System.Windows.Forms;
+using AxWMPLib;
+using NAudio.Wave;
 
 namespace Lab4_karta_dźwiękowa
 {
     public partial class Form1 : Form
     {
         private string filePath = "";
-        // private SoundPlayer player;
-        private bool wasPlayed, wasRecored = false;
         private string fileRecordPath = "";
 
+        private SoundPlayer soundPlayer;
+        private AxWindowsMediaPlayer mediaPlayer;
+        private WaveOut waveOutDevice = new WaveOut();
+        private DirectSoundOut directSoundOut = new DirectSoundOut();
+        private AudioFileReader audioFileReader;
 
         NAudio.Wave.WaveIn sourceStream = null;
         NAudio.Wave.DirectSoundOut soundOut = null;
@@ -22,29 +28,32 @@ namespace Lab4_karta_dźwiękowa
         public Form1()
         {
             InitializeComponent();
+            mediaPlayer = axWindowsMediaPlayer;
+            mediaPlayer.CreateControl();
         }
 
-        private void buttonFile_Click(object sender, EventArgs e)   // Wybranie pliku do odtworzenia
+        private void buttonFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog file = new OpenFileDialog();
-            file.Filter = "Audio files (.wav)|*.wav";     // Akceptowalne formaty plików to WAV
-            if (file.ShowDialog() == DialogResult.OK)
+            OpenFileDialog fileExplorer = new OpenFileDialog();
+            fileExplorer.Filter = "Audio files (.wav)|*.wav";
+            if (fileExplorer.ShowDialog() == DialogResult.OK)
             {
-                filePath = file.FileName;
-                labelFilePath.Text = $"Wybrany plik: {filePath}";
+                filePath = fileExplorer.FileName;
+                labelFilePath.Text = $"Listen to: {filePath}";
                 FillListBox();
+                soundPlayer = new SoundPlayer(@filePath);
+                audioFileReader = new AudioFileReader(filePath);
             }
         }
 
-        private void FillListBox()  // funkcja zczytująca nagłowek pliku WAV
+        private void FillListBox()
         {
-            if (!string.IsNullOrEmpty(filePath))  // jesli wybrano plik 
+            if (!string.IsNullOrEmpty(filePath))
             {
                 FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
 
                 BinaryReader reader = new BinaryReader(fileStream);
 
-                // odczytanie nagłówka pliku Wave
                 byte[] wave = reader.ReadBytes(24);
 
                 fileStream.Position = 0;
@@ -61,7 +70,6 @@ namespace Lab4_karta_dźwiękowa
                 reader.Close();
 
 
-                // Przypisanie odczytanych wartości do zmiennych tyou string
                 string chunkIDStr = $"Chunk ID: {chunkID}";
                 string fileSizeStr = $"Chunk size: {fileSize}";
 
@@ -69,38 +77,80 @@ namespace Lab4_karta_dźwiękowa
                 string subchunk1IDStr = $"Subchunk ID: {subchunk1ID}";
                 string subchunk1SizeStr = $"Subchunk Size ID: {subchunk1Size}";
 
-                // Wyświetlenie danych w oknie
                 listBoxFileInfo.Items.Clear();
-                listBoxFileInfo.Items.AddRange(new string[]
-                {
-                    "\tNagłówek pliku:",chunkIDStr, fileSizeStr, fileFormatStr,"\tOpis struktury audio:",subchunk1IDStr
-                   ,subchunk1SizeStr
-                });
+                listBoxFileInfo.Items.AddRange(new string[] {
+                                                             "\tNagłówek pliku:",
+                                                             chunkIDStr,
+                                                             fileSizeStr,
+                                                             fileFormatStr,
+                                                             "\tOpis struktury audio:",
+                                                             subchunk1IDStr,
+                                                             subchunk1SizeStr});
             }
         }
 
-        // obsługa przycisku play służącego do odtworzenia wcześniej wybranego pliku
         private void buttonPlay_Click(object sender, EventArgs e)
         {
 
-
             if (filePath == String.Empty)
-                MessageBox.Show("Wybierz plik!");   // jesli sciezka do pliku jest pusta wyswietl komunikat o braku sciezki
+                MessageBox.Show("Wybierz plik!");
+
             else
             {
-                SoundPlayer simpleSound = new SoundPlayer(@filePath);
-                if (!wasPlayed)         // jesli nic nie jest odtwarzane
+                if (buttonPlay.Text == "PLAY")
                 {
-                    buttonPlay.Text = "STOP";       // zmien napis przycisku
-                    wasPlayed = !wasPlayed;
-                    simpleSound.Play();         // użycie funckji play z biblioteki SoundPlayer
+                    buttonPlay.Text = "STOP";
+
+                    if(radioButtonSoundPlayer.Checked)
+                    {
+                        soundPlayer.Play();
+                    }
+
+                    if(radioButtonMediaPlayer.Checked)
+                    {
+                        axWindowsMediaPlayer.Visible = true;
+                        mediaPlayer.URL = filePath;
+                        mediaPlayer.Ctlcontrols.play();
+                    }
+                    
+                    if(radioButtonWaveOut.Checked)
+                    {
+                        var waveOut = new WaveChannel32(new WaveFileReader(filePath));
+                        waveOutDevice.Init(waveOut);
+                        waveOutDevice.Play();
+                    }
+
+                    if (radioButtonDirectSound.Checked)
+                    {
+                        directSoundOut.Init(audioFileReader);
+                        directSoundOut.Play();
+                    }
                 }
+
                 else
                 {
-                    // jeśli coś jest odtwarzane to sytuacja analogiczna tylko z zatrzymaniem odtwarzania
                     buttonPlay.Text = "PLAY";
-                    wasPlayed = !wasPlayed;
-                    simpleSound.Stop();
+
+                    if (radioButtonSoundPlayer.Checked)
+                    {
+                        soundPlayer.Stop();
+                    }
+
+                    if (radioButtonMediaPlayer.Checked)
+                    {
+                        mediaPlayer.Ctlcontrols.stop();
+                        axWindowsMediaPlayer.Visible = false;
+                    }
+
+                    if (radioButtonWaveOut.Checked)
+                    {
+                        waveOutDevice.Stop();
+                    }
+
+                    if (radioButtonDirectSound.Checked)
+                    {
+                        directSoundOut.Stop();
+                    }
                 }
             }
         }
@@ -108,27 +158,25 @@ namespace Lab4_karta_dźwiękowa
         // obsługa przycisku wyszukiwania mikrofonu
         private void buttonFindDevice_Click(object sender, EventArgs e)
         {
+            labelSelectDevice.Visible = true;
 
-            label1.Visible = true;
-
-
-            List<NAudio.Wave.WaveInCapabilities> sources = new List<NAudio.Wave.WaveInCapabilities>();
+            List<NAudio.Wave.WaveInCapabilities> sources = new List<WaveInCapabilities>();
 
             for (int i = 0; i < NAudio.Wave.WaveIn.DeviceCount; i++)
-                sources.Add(NAudio.Wave.WaveIn.GetCapabilities(i));
+                sources.Add(WaveIn.GetCapabilities(i));
 
-            listBoxDevices.Items.Clear();   // jesli już coś było w oknie to je wyczyść
+            listBoxMicrophones.Items.Clear();
 
             int counter = 0;
             foreach (var source in sources)
             {
                 string item = source.ProductName;
-                listBoxDevices.Items.Add("Mikrofon " + counter + "->" + item); // dodanie i wyswietlenie do okna znalezionych mikrofonów
+                listBoxMicrophones.Items.Add("Microfon " + counter + "->" + item);
                 counter++;
             }
         }
 
-        private void sourceStream_DataAvailable(object sender, NAudio.Wave.WaveInEventArgs e)
+        private void sourceStream_DataAvailable(object sender, WaveInEventArgs e)
         {
             if (waveFileWriter == null)
                 return;
@@ -137,75 +185,69 @@ namespace Lab4_karta_dźwiękowa
             waveFileWriter.Flush();
         }
 
-        // obsluga przycisku nagraj
         private void buttonRecord_Click(object sender, EventArgs e)
         {
-            // jesli cos nie jest nagrywane
-            if (wasRecored == false)
+            if (buttonRecord.Text == "Record")
             {
-                //jesli nie znaleziono urządzeń (mikrofonu)
-                if (listBoxDevices.SelectedItems.Count == 0)
+                if (listBoxMicrophones.SelectedItems.Count == 0)
                     return;
 
-                // jesli nie została wybrana scieżka do zapisu nagrania wyświetl komunikat
                 if (fileRecordPath == "")
                 {
-                    MessageBox.Show("Wybierz miejsce w którym chcesz zapisać plik!");
+                    MessageBox.Show("Select save file");
                 }
                 else
                 {
+                    int deviceNumber = listBoxMicrophones.SelectedIndex;
 
-                    // nagrywanie do wczesniej wybranego pliku
-                    int deviceNumber = listBoxDevices.SelectedIndex;
-
-                    sourceStream = new NAudio.Wave.WaveIn();
+                    sourceStream = new WaveIn();
                     sourceStream.DeviceNumber = deviceNumber;
-                    sourceStream.WaveFormat = new NAudio.Wave.WaveFormat(44100, NAudio.Wave.WaveIn.GetCapabilities(deviceNumber).Channels); // nadanie czestotliwosci nagrywania, i standardu mono czy stereo wynikającego z urządzenia
-
-                    sourceStream.DataAvailable += new EventHandler<NAudio.Wave.WaveInEventArgs>(sourceStream_DataAvailable);
-                    waveFileWriter = new NAudio.Wave.WaveFileWriter(fileRecordPath, sourceStream.WaveFormat);
+                    sourceStream.WaveFormat = new WaveFormat(44100, WaveIn.GetCapabilities(deviceNumber).Channels);
+                    sourceStream.DataAvailable += new EventHandler<WaveInEventArgs>(sourceStream_DataAvailable);
+                    waveFileWriter = new WaveFileWriter(fileRecordPath, sourceStream.WaveFormat);
 
                     sourceStream.StartRecording();
 
-                    buttonRecord.Text = "Nagrywanie...";
-                    wasRecored = true;
+                    buttonRecord.Text = "Stop recording";
                 }
             }
-            else if (wasRecored == true) // jesli jest już coś nagrywane to zatrzymaj obecne nagrywanie i zmien tekst na przyciskach
+            else
             {
                 if (soundOut != null)
                 {
                     soundOut.Stop();
                     soundOut.Dispose();
                     soundOut = null;
-                    buttonRecord.Text = "Nagraj";
+                    buttonRecord.Text = "Record";
                 }
                 if (sourceStream != null)
                 {
                     sourceStream.StopRecording();
                     sourceStream.Dispose();
                     sourceStream = null;
-                    buttonRecord.Text = "Nagraj";
+                    buttonRecord.Text = "Record";
                 }
                 if (waveFileWriter != null)
                 {
                     waveFileWriter.Dispose();
                     waveFileWriter = null;
-                    buttonRecord.Text = "Nagraj";
+                    buttonRecord.Text = "Record";
                 }
 
                 labelRecording.Text = "";
             }
         }
 
-        // funkcja wyboru scieżki do zapisywania nagrania
-        private void button1_Click_1(object sender, EventArgs e)
+        private void buttonSelectFile_Click(object sender, EventArgs e)
         {
-            SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "Wave File (*.wav)|*.wav;";
-            if (save.ShowDialog() != DialogResult.OK) return;
-            else
-                fileRecordPath = save.FileName;
+            SaveFileDialog fileExplorer = new SaveFileDialog();
+            fileExplorer.Filter = "Wave File (*.wav)|*.wav;";
+            if (fileExplorer.ShowDialog() == DialogResult.OK)
+            {
+                fileRecordPath = fileExplorer.FileName;
+                labelSaveFilePath.Text = $"Save to: {fileRecordPath}";
+            }
+
         }
     }
 }
