@@ -21,11 +21,13 @@ namespace Lab5_kamera
     {
         FilterInfoCollection videoDevicesList;
         VideoCaptureDevice camera;
+        Bitmap bitmap;
+        Bitmap frame;
         int brightess = 0;
         int contrast = 0;
         int saturation = 0;
         bool isRecording = false;
-        VideoFileWriter writer;
+        VideoFileWriter writer = new VideoFileWriter();
 
         public Form1()
         {
@@ -44,7 +46,7 @@ namespace Lab5_kamera
 
         private void Camera_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
-            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
+            bitmap = (Bitmap) eventArgs.Frame.Clone();
             BrightnessCorrection br = new BrightnessCorrection(brightess);
             ContrastCorrection cr = new ContrastCorrection(contrast);
             SaturationCorrection sr = new SaturationCorrection(saturation);
@@ -56,7 +58,11 @@ namespace Lab5_kamera
 
             if (isRecording)
             {
-                writer.WriteVideoFrame(bitmap);
+                frame = (Bitmap)eventArgs.Frame.Clone();
+                bitmap = br.Apply((Bitmap)bitmap.Clone());
+                bitmap = cr.Apply((Bitmap)bitmap.Clone());
+                bitmap = sr.Apply((Bitmap)bitmap.Clone());
+                writer.WriteVideoFrame(frame);
             }
         }
 
@@ -114,7 +120,6 @@ namespace Lab5_kamera
         {
             if (camera.IsRunning)
             {
-                camera.Stop();
                 buttonStopCam.Enabled = false;
                 buttonPictureCam.Enabled = false;
                 buttonRecordingCam.Enabled = false;
@@ -128,9 +133,7 @@ namespace Lab5_kamera
                 try
                 {
                     isRecording = true;
-                    writer = new VideoFileWriter();
                     writer.Open(saveFileDialog.FileName, pbCam.Image.Width, pbCam.Image.Height, 30, VideoCodec.MPEG4);
-                    MessageBox.Show("XD");
                 }
                 catch 
                 {
@@ -158,8 +161,8 @@ namespace Lab5_kamera
 
         private void buttonStopRecordingCam_Click(object sender, EventArgs e)
         {
-            writer.Close();
             camera.Stop();
+            isRecording = false;
             buttonStopCam.Enabled = false;
             buttonPictureCam.Enabled = false;
             buttonRecordingCam.Enabled = false;
