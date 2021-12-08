@@ -33,21 +33,21 @@ namespace Lab5_kamera
         {
             this.button_searchDev = new System.Windows.Forms.Button();
             this.cmbDevList1 = new System.Windows.Forms.ComboBox();
-            this.pbCam1 = new System.Windows.Forms.PictureBox();
-            this.labelCamera1 = new System.Windows.Forms.Label();
-            this.buttonSsCam1 = new System.Windows.Forms.Button();
-            this.buttonCamOneStop = new System.Windows.Forms.Button();
-            this.buttonPictureCamOne = new System.Windows.Forms.Button();
+            this.pbCam = new System.Windows.Forms.PictureBox();
+            this.labelCamera = new System.Windows.Forms.Label();
+            this.buttonStartCam = new System.Windows.Forms.Button();
+            this.buttonStopCam = new System.Windows.Forms.Button();
+            this.buttonPictureCam = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.buttonRecordingCamOne = new System.Windows.Forms.Button();
-            this.buttonStopRecordingCamOne = new System.Windows.Forms.Button();
+            this.buttonRecordingCam = new System.Windows.Forms.Button();
             this.brightnesslabel = new System.Windows.Forms.Label();
             this.saturationlabel = new System.Windows.Forms.Label();
             this.contrastlabel = new System.Windows.Forms.Label();
             this.brightnessTrackBar = new System.Windows.Forms.TrackBar();
             this.saturationTrackBar = new System.Windows.Forms.TrackBar();
             this.contrastTrackBar = new System.Windows.Forms.TrackBar();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCam1)).BeginInit();
+            this.buttonStopRecordingCam = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.brightnessTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.saturationTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contrastTrackBar)).BeginInit();
@@ -71,78 +71,70 @@ namespace Lab5_kamera
             this.cmbDevList1.Size = new System.Drawing.Size(357, 21);
             this.cmbDevList1.TabIndex = 1;
             // 
-            // pbCam1
+            // pbCam
             // 
-            this.pbCam1.Location = new System.Drawing.Point(12, 81);
-            this.pbCam1.Name = "pbCam1";
-            this.pbCam1.Size = new System.Drawing.Size(357, 271);
-            this.pbCam1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbCam1.TabIndex = 3;
-            this.pbCam1.TabStop = false;
+            this.pbCam.Location = new System.Drawing.Point(12, 81);
+            this.pbCam.Name = "pbCam";
+            this.pbCam.Size = new System.Drawing.Size(357, 271);
+            this.pbCam.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbCam.TabIndex = 3;
+            this.pbCam.TabStop = false;
             // 
-            // labelCamera1
+            // labelCamera
             // 
-            this.labelCamera1.AutoSize = true;
-            this.labelCamera1.Location = new System.Drawing.Point(12, 35);
-            this.labelCamera1.Name = "labelCamera1";
-            this.labelCamera1.Size = new System.Drawing.Size(55, 13);
-            this.labelCamera1.TabIndex = 4;
-            this.labelCamera1.Text = "Camera 1:";
+            this.labelCamera.AutoSize = true;
+            this.labelCamera.Location = new System.Drawing.Point(12, 35);
+            this.labelCamera.Name = "labelCamera";
+            this.labelCamera.Size = new System.Drawing.Size(46, 13);
+            this.labelCamera.TabIndex = 4;
+            this.labelCamera.Text = "Camera:";
             // 
-            // buttonSsCam1
+            // buttonStartCam
             // 
-            this.buttonSsCam1.Location = new System.Drawing.Point(12, 358);
-            this.buttonSsCam1.Name = "buttonSsCam1";
-            this.buttonSsCam1.Size = new System.Drawing.Size(65, 23);
-            this.buttonSsCam1.TabIndex = 7;
-            this.buttonSsCam1.Text = "Start";
-            this.buttonSsCam1.UseVisualStyleBackColor = true;
-            this.buttonSsCam1.Click += new System.EventHandler(this.buttonSsCam1_Click);
+            this.buttonStartCam.Location = new System.Drawing.Point(12, 358);
+            this.buttonStartCam.Name = "buttonStartCam";
+            this.buttonStartCam.Size = new System.Drawing.Size(65, 23);
+            this.buttonStartCam.TabIndex = 7;
+            this.buttonStartCam.Text = "Start";
+            this.buttonStartCam.UseVisualStyleBackColor = true;
+            this.buttonStartCam.Click += new System.EventHandler(this.buttonStartCam_Click);
             // 
-            // buttonCamOneStop
+            // buttonStopCam
             // 
-            this.buttonCamOneStop.Location = new System.Drawing.Point(83, 358);
-            this.buttonCamOneStop.Name = "buttonCamOneStop";
-            this.buttonCamOneStop.Size = new System.Drawing.Size(65, 23);
-            this.buttonCamOneStop.TabIndex = 8;
-            this.buttonCamOneStop.Text = "Stop";
-            this.buttonCamOneStop.UseVisualStyleBackColor = true;
-            this.buttonCamOneStop.Click += new System.EventHandler(this.buttonCamOneStop_Click);
+            this.buttonStopCam.Enabled = false;
+            this.buttonStopCam.Location = new System.Drawing.Point(83, 358);
+            this.buttonStopCam.Name = "buttonStopCam";
+            this.buttonStopCam.Size = new System.Drawing.Size(65, 23);
+            this.buttonStopCam.TabIndex = 8;
+            this.buttonStopCam.Text = "Stop";
+            this.buttonStopCam.UseVisualStyleBackColor = true;
+            this.buttonStopCam.Click += new System.EventHandler(this.buttonStopCam_Click);
             // 
-            // buttonPictureCamOne
+            // buttonPictureCam
             // 
-            this.buttonPictureCamOne.Location = new System.Drawing.Point(154, 358);
-            this.buttonPictureCamOne.Name = "buttonPictureCamOne";
-            this.buttonPictureCamOne.Size = new System.Drawing.Size(65, 23);
-            this.buttonPictureCamOne.TabIndex = 11;
-            this.buttonPictureCamOne.Text = "Picture";
-            this.buttonPictureCamOne.UseVisualStyleBackColor = true;
-            this.buttonPictureCamOne.Click += new System.EventHandler(this.buttonPictureCamOne_Click);
+            this.buttonPictureCam.Enabled = false;
+            this.buttonPictureCam.Location = new System.Drawing.Point(154, 358);
+            this.buttonPictureCam.Name = "buttonPictureCam";
+            this.buttonPictureCam.Size = new System.Drawing.Size(65, 23);
+            this.buttonPictureCam.TabIndex = 11;
+            this.buttonPictureCam.Text = "Picture";
+            this.buttonPictureCam.UseVisualStyleBackColor = true;
+            this.buttonPictureCam.Click += new System.EventHandler(this.buttonPictureCam_Click);
             // 
             // saveFileDialog
             // 
             this.saveFileDialog.FileName = "picture";
             // 
-            // buttonRecordingCamOne
+            // buttonRecordingCam
             // 
-            this.buttonRecordingCamOne.Location = new System.Drawing.Point(225, 358);
-            this.buttonRecordingCamOne.Name = "buttonRecordingCamOne";
-            this.buttonRecordingCamOne.Size = new System.Drawing.Size(65, 23);
-            this.buttonRecordingCamOne.TabIndex = 13;
-            this.buttonRecordingCamOne.Text = "Record";
-            this.buttonRecordingCamOne.UseVisualStyleBackColor = true;
-            this.buttonRecordingCamOne.Click += new System.EventHandler(this.buttonRecordingCamOne_Click);
-            // 
-            // buttonStopRecordingCamOne
-            // 
-            this.buttonStopRecordingCamOne.Enabled = false;
-            this.buttonStopRecordingCamOne.Location = new System.Drawing.Point(225, 358);
-            this.buttonStopRecordingCamOne.Name = "buttonStopRecordingCamOne";
-            this.buttonStopRecordingCamOne.Size = new System.Drawing.Size(65, 23);
-            this.buttonStopRecordingCamOne.TabIndex = 18;
-            this.buttonStopRecordingCamOne.Text = "Stop";
-            this.buttonStopRecordingCamOne.UseVisualStyleBackColor = true;
-            this.buttonStopRecordingCamOne.Click += new System.EventHandler(this.buttonStopRecordingCamOne_Click);
+            this.buttonRecordingCam.Enabled = false;
+            this.buttonRecordingCam.Location = new System.Drawing.Point(225, 358);
+            this.buttonRecordingCam.Name = "buttonRecordingCam";
+            this.buttonRecordingCam.Size = new System.Drawing.Size(65, 23);
+            this.buttonRecordingCam.TabIndex = 13;
+            this.buttonRecordingCam.Text = "Record";
+            this.buttonRecordingCam.UseVisualStyleBackColor = true;
+            this.buttonRecordingCam.Click += new System.EventHandler(this.buttonRecordingCam_Click);
             // 
             // brightnesslabel
             // 
@@ -201,29 +193,41 @@ namespace Lab5_kamera
             this.contrastTrackBar.TabIndex = 20;
             this.contrastTrackBar.Scroll += new System.EventHandler(this.contrastTrackBar_Scroll);
             // 
-            // MainWindow
+            // buttonStopRecordingCam
+            // 
+            this.buttonStopRecordingCam.Enabled = false;
+            this.buttonStopRecordingCam.Location = new System.Drawing.Point(296, 358);
+            this.buttonStopRecordingCam.Name = "buttonStopRecordingCam";
+            this.buttonStopRecordingCam.Size = new System.Drawing.Size(65, 43);
+            this.buttonStopRecordingCam.TabIndex = 21;
+            this.buttonStopRecordingCam.Text = "Stop recording";
+            this.buttonStopRecordingCam.UseVisualStyleBackColor = true;
+            this.buttonStopRecordingCam.Click += new System.EventHandler(this.buttonStopRecordingCam_Click);
+            // 
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(383, 640);
+            this.Controls.Add(this.buttonStopRecordingCam);
             this.Controls.Add(this.contrastTrackBar);
             this.Controls.Add(this.saturationTrackBar);
             this.Controls.Add(this.brightnessTrackBar);
             this.Controls.Add(this.contrastlabel);
             this.Controls.Add(this.saturationlabel);
             this.Controls.Add(this.brightnesslabel);
-            this.Controls.Add(this.buttonRecordingCamOne);
-            this.Controls.Add(this.buttonPictureCamOne);
-            this.Controls.Add(this.buttonCamOneStop);
-            this.Controls.Add(this.buttonSsCam1);
-            this.Controls.Add(this.labelCamera1);
-            this.Controls.Add(this.pbCam1);
+            this.Controls.Add(this.buttonRecordingCam);
+            this.Controls.Add(this.buttonPictureCam);
+            this.Controls.Add(this.buttonStopCam);
+            this.Controls.Add(this.buttonStartCam);
+            this.Controls.Add(this.labelCamera);
+            this.Controls.Add(this.pbCam);
             this.Controls.Add(this.cmbDevList1);
             this.Controls.Add(this.button_searchDev);
-            this.Name = "MainWindow";
+            this.Name = "Form1";
             this.Text = "USBCam";
-            this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.pbCam1)).EndInit();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.pbCam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.brightnessTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.saturationTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.contrastTrackBar)).EndInit();
@@ -236,20 +240,20 @@ namespace Lab5_kamera
 
         private System.Windows.Forms.Button button_searchDev;
         private System.Windows.Forms.ComboBox cmbDevList1;
-        private System.Windows.Forms.PictureBox pbCam1;
-        private System.Windows.Forms.Label labelCamera1;
-        private System.Windows.Forms.Button buttonSsCam1;
-        private System.Windows.Forms.Button buttonCamOneStop;
-        private System.Windows.Forms.Button buttonPictureCamOne;
+        private System.Windows.Forms.PictureBox pbCam;
+        private System.Windows.Forms.Label labelCamera;
+        private System.Windows.Forms.Button buttonStartCam;
+        private System.Windows.Forms.Button buttonStopCam;
+        private System.Windows.Forms.Button buttonPictureCam;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
-        private System.Windows.Forms.Button buttonRecordingCamOne;
-        private System.Windows.Forms.Button buttonStopRecordingCamOne;
+        private System.Windows.Forms.Button buttonRecordingCam;
         private System.Windows.Forms.Label brightnesslabel;
         private System.Windows.Forms.Label saturationlabel;
         private System.Windows.Forms.Label contrastlabel;
         private System.Windows.Forms.TrackBar brightnessTrackBar;
         private System.Windows.Forms.TrackBar saturationTrackBar;
         private System.Windows.Forms.TrackBar contrastTrackBar;
+        private Button buttonStopRecordingCam;
     }
 }
 

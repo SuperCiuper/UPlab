@@ -33,6 +33,5 @@ C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab5-kamera\bin\Debug\AForge.
 C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab5-kamera\bin\Debug\AForge.Video.xml
 C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab5-kamera\bin\Debug\AForge.Video.DirectShow.xml
 C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab5-kamera\obj\Debug\Lab5_kamera.Form1.resources
-C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab5-kamera\obj\Debug\Lab5-kamera.csproj.CopyComplete
 C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab5-kamera\obj\Debug\Lab5-kamera.exe
 C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab5-kamera\obj\Debug\Lab5-kamera.pdb

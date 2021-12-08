@@ -32,63 +32,74 @@ namespace Lab5_kamera
             InitializeComponent();
         }
 
-
-        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //if (videoSource.IsRunning)
-            // {
-            //    videoSource.Stop();
-            //}
-        }
         private void button_searchDev_Click(object sender, EventArgs e)
         {
             videoDevicesList = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            cmbDevList1.Items.Clear();
             foreach (FilterInfo videoDevice in videoDevicesList)
             {
                 cmbDevList1.Items.Add(videoDevice.Name);
             }
         }
 
-        private void CameraOne_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        private void Camera_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
-            Bitmap bitmap1 = (Bitmap)eventArgs.Frame.Clone();
+            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
             BrightnessCorrection br = new BrightnessCorrection(brightess);
             ContrastCorrection cr = new ContrastCorrection(contrast);
             SaturationCorrection sr = new SaturationCorrection(saturation);
-            bitmap1 = br.Apply((Bitmap)bitmap1.Clone());
-            bitmap1 = cr.Apply((Bitmap)bitmap1.Clone());
-            bitmap1 = sr.Apply((Bitmap)bitmap1.Clone());
+            bitmap = br.Apply((Bitmap)bitmap.Clone());
+            bitmap = cr.Apply((Bitmap)bitmap.Clone());
+            bitmap = sr.Apply((Bitmap)bitmap.Clone());
 
-            pbCam1.Image = bitmap1;
+            pbCam.Image = bitmap;
 
             if (isRecording)
             {
-                writer.WriteVideoFrame(bitmap1);
+                writer.WriteVideoFrame(bitmap);
             }
         }
 
-        private void buttonSsCam1_Click(object sender, EventArgs e)
+        private void buttonStartCam_Click(object sender, EventArgs e)
         {
+            if(cmbDevList1.Items.Count == 0)
+            {
+                MessageBox.Show("No cams detected");
+                return;
+            }
             camera = new VideoCaptureDevice(videoDevicesList[cmbDevList1.SelectedIndex].MonikerString);
-            camera.NewFrame += new NewFrameEventHandler(CameraOne_NewFrame);
+            camera.NewFrame += new NewFrameEventHandler(Camera_NewFrame);
             camera.Start();
+
+            buttonStopCam.Enabled = true;
+            buttonPictureCam.Enabled = true;
+            buttonRecordingCam.Enabled = true;
+            buttonStartCam.Enabled = false;
         }
 
-        private void buttonCamOneStop_Click(object sender, EventArgs e)
+        private void buttonStopCam_Click(object sender, EventArgs e)
         {
             camera.Stop();
+            buttonStopCam.Enabled = false;
+            buttonPictureCam.Enabled = false;
+            buttonRecordingCam.Enabled = false;
+            buttonStartCam.Enabled = true;
         }
 
-        private void buttonPictureCamOne_Click(object sender, EventArgs e)
+        private void buttonPictureCam_Click(object sender, EventArgs e)
         {
-            buttonCamOneStop_Click(sender, e);
-            Bitmap picture = (Bitmap)pbCam1.Image;
+            buttonStopCam_Click(sender, e);
+            Bitmap picture = (Bitmap)pbCam.Image;
             saveFileDialog.Filter = "Bitmap Image|*.bmp";
             saveFileDialog.Title = "Save an Image File";
             saveFileDialog.ShowDialog();
             System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
             picture.Save(fs, System.Drawing.Imaging.ImageFormat.Bmp);
             fs.Close();
+
+            buttonStopCam.Enabled = false;
+            buttonPictureCam.Enabled = false;
+            buttonStartCam.Enabled = true;
         }
 
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
@@ -98,35 +109,28 @@ namespace Lab5_kamera
             saturation = 0;
         }
 
-        private void buttonRecordingCamOne_Click(object sender, EventArgs e)
+        private void buttonRecordingCam_Click(object sender, EventArgs e)
         {
             if (camera.IsRunning)
             {
-                buttonRecordingCamOne.Enabled = false;
-                buttonStopRecordingCamOne.Enabled = true;
+                camera.Stop();
+                buttonRecordingCam.Enabled = false;
+                buttonStopRecordingCam.Enabled = true;
+                saveFileDialog.Filter = "Avi |*.avi";
+                saveFileDialog.Title = "Save an Record File";
+                saveFileDialog.ShowDialog();
 
                 try
                 {
                     isRecording = true;
                     writer = new VideoFileWriter();
-                    writer.Open("video.avi", pbCam1.Image.Width, pbCam1.Image.Height, 30, VideoCodec.MPEG4);
+                    writer.Open(saveFileDialog.FileName, pbCam.Image.Width, pbCam.Image.Height, 30, VideoCodec.MPEG4);
+                    MessageBox.Show("XD");
                 }
-                catch { }
-            }
-        }
-        private void buttonStopRecordingCamOne_Click(object sender, EventArgs e)
-        {
-            if (camera.IsRunning)
-            {
-                isRecording = false;
-                writer.Close();
-
-                buttonRecordingCamOne.Enabled = true;
-                buttonStopRecordingCamOne.Enabled = false;
-                saveFileDialog.Filter = "Avi Files (*.avi)|*.avi";
-                saveFileDialog.Title = "Save a Video File";
-                saveFileDialog.ShowDialog();
-                System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
+                catch 
+                {
+                    isRecording = false;
+                }
             }
         }
         private void brightnessTrackBar_Scroll(object sender, EventArgs e)
@@ -145,6 +149,13 @@ namespace Lab5_kamera
         {
             if (camera.IsRunning)
                 saturation = saturationTrackBar.Value;
+        }
+
+        private void buttonStopRecordingCam_Click(object sender, EventArgs e)
+        {
+            writer.Close();
+            buttonRecordingCam.Enabled = true;
+            buttonStopRecordingCam.Enabled = false;
         }
     }
 }
