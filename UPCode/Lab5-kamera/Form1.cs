@@ -99,6 +99,7 @@ namespace Lab5_kamera
 
             buttonStopCam.Enabled = false;
             buttonPictureCam.Enabled = false;
+            buttonRecordingCam.Enabled = false;
             buttonStartCam.Enabled = true;
         }
 
@@ -114,10 +115,14 @@ namespace Lab5_kamera
             if (camera.IsRunning)
             {
                 camera.Stop();
+                buttonStopCam.Enabled = false;
+                buttonPictureCam.Enabled = false;
                 buttonRecordingCam.Enabled = false;
+                buttonStartCam.Enabled = false;
                 buttonStopRecordingCam.Enabled = true;
+
                 saveFileDialog.Filter = "Avi |*.avi";
-                saveFileDialog.Title = "Save an Record File";
+                saveFileDialog.Title = "Save recording";
                 saveFileDialog.ShowDialog();
 
                 try
@@ -154,7 +159,11 @@ namespace Lab5_kamera
         private void buttonStopRecordingCam_Click(object sender, EventArgs e)
         {
             writer.Close();
-            buttonRecordingCam.Enabled = true;
+            camera.Stop();
+            buttonStopCam.Enabled = false;
+            buttonPictureCam.Enabled = false;
+            buttonRecordingCam.Enabled = false;
+            buttonStartCam.Enabled = true;
             buttonStopRecordingCam.Enabled = false;
         }
     }
