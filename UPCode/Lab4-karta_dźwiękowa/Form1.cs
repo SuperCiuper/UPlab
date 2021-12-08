@@ -155,7 +155,6 @@ namespace Lab4_karta_dźwiękowa
             }
         }
 
-        // obsługa przycisku wyszukiwania mikrofonu
         private void buttonFindDevice_Click(object sender, EventArgs e)
         {
             labelSelectDevice.Visible = true;

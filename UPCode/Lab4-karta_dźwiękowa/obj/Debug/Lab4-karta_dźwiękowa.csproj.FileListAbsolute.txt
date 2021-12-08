@@ -52,3 +52,8 @@ C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab4-karta_dźwiękowa\obj\Debug\AxIn
 C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab4-karta_dźwiękowa\obj\Debug\Lab4-karta_dźwiękowa.csproj.ResolveComReference.cache
 C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab4-karta_dźwiękowa\bin\Debug\Interop.WMPLib.dll
 C:\Users\lab\Documents\GitHub\UPlab\UPCode\Lab4-karta_dźwiękowa\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab4-karta_dźwiękowa\bin\Debug\Interop.WMPLib.dll
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab4-karta_dźwiękowa\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab4-karta_dźwiękowa\obj\Debug\Interop.WMPLib.dll
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab4-karta_dźwiękowa\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab4-karta_dźwiękowa\obj\Debug\Lab4-karta_dźwiękowa.csproj.ResolveComReference.cache
