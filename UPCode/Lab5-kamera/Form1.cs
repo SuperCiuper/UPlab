@@ -7,10 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AForge;
 using AForge.Video.DirectShow;
 using AForge.Video;
-using Accord.Video.VFW;
 using Accord.Video.FFMPEG;
 using AForge.Imaging.Filters;
 
