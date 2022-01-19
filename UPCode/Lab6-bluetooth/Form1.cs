@@ -27,6 +27,8 @@ namespace Lab6_bluetooth
         public Form1()
         {
             InitializeComponent();
+            openFile.Multiselect = true;
+            openFile.Title = "Select files to send";
         }
 
         private void ScanDevices()
@@ -193,6 +195,15 @@ namespace Lab6_bluetooth
         {
             openFile.ShowDialog();
             fileNames = openFile.FileNames;
+
+            if (fileNames.Length == 1)
+                textBoxSelectedFile.Text = fileNames[0];
+
+            else if (fileNames.Length == 0)
+                textBoxSelectedFile.Text = "No files selected";
+
+            else
+                textBoxSelectedFile.Text = fileNames.Length + " files selected";
         }
         private void Send()
         {
