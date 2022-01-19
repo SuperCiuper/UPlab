@@ -10,3 +10,16 @@ C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab6-bluetooth\obj\Release\La
 C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab6-bluetooth\obj\Release\Lab6-bluetooth.pdb
 C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab6-bluetooth\bin\Release\InTheHand.Net.Personal.dll
 C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab6-bluetooth\bin\Release\InTheHand.Net.Personal.xml
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\bin\Release\Lab6-bluetooth.exe.config
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\bin\Release\Lab6-bluetooth.exe
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\bin\Release\Lab6-bluetooth.pdb
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\bin\Release\InTheHand.Net.Personal.dll
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\bin\Release\InTheHand.Net.Personal.xml
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\obj\Release\Lab6-bluetooth.csproj.AssemblyReference.cache
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\obj\Release\Lab6_bluetooth.Form1.resources
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\obj\Release\Lab6_bluetooth.Properties.Resources.resources
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\obj\Release\Lab6-bluetooth.csproj.GenerateResource.cache
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\obj\Release\Lab6-bluetooth.csproj.CoreCompileInputs.cache
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\obj\Release\Lab6-bluetooth.csproj.CopyComplete
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\obj\Release\Lab6-bluetooth.exe
+C:\Users\szymo\Dokumenty\GitHub\UPlab\UPCode\Lab6-bluetooth\obj\Release\Lab6-bluetooth.pdb
