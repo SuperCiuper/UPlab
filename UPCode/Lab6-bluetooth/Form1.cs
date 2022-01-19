@@ -40,8 +40,8 @@ namespace Lab6_bluetooth
 
                     foreach (var bluetoothDevice in bluetoothDevices)
                     {
-                        richTextBoxInfo.AppendText(string.Format("Nazwa urządzenia: {0}\r\nTyp urządzenia: {1} Połączono: {2} Adres: {3}\r\nOstatnio widziano: {4} Ostatnio użyto: {5}\n",
-                            bluetoothDevice.DeviceName, bluetoothDevice.ClassOfDevice.Device, bluetoothDevice.Connected, bluetoothDevice.DeviceAddress, bluetoothDevice.LastSeen, bluetoothDevice.LastUsed));
+                        invoker(richTextBoxInfo, string.Format("Nazwa urządzenia: {0}\r\nTyp urządzenia: {1} Połączono: {2} Adres: {3}\r\nOstatnio widziano: {4} Ostatnio użyto: {5}\n",
+                            bluetoothDevice.DeviceName, bluetoothDevice.ClassOfDevice.Device, bluetoothDevice.Connected, bluetoothDevice.DeviceAddress, bluetoothDevice.LastSeen, bluetoothDevice.LastUsed), true);
 
                         bool onList = false;
 
@@ -61,7 +61,10 @@ namespace Lab6_bluetooth
                 }
             } catch (Exception error)
             {
-                richTextBoxInfo.AppendText("ERROR: \n" + error.Message + "\n");
+                invoker(richTextBoxInfo, "ERROR: \n" + error.Message + "\n", true);
+                invoker(buttonDiscoverDevices, "Discover devices", false);
+                continueScanning = true;
+                invoker(richTextBoxInfo, "Stopped discovering\n", true);
             }
 
         }
@@ -72,13 +75,13 @@ namespace Lab6_bluetooth
             {
                 buttonDiscoverDevices.Text = "Stop discovering";
                 continueScanning = true;
-                richTextBoxInfo.AppendText("Discovering devices\n");
+                invoker(richTextBoxInfo, "Discovering devices\n", true);
             }
             else
             {
                 buttonDiscoverDevices.Text = "Discover devices";
                 continueScanning = true;
-                richTextBoxInfo.AppendText("Stopped discovering\n");
+                invoker(richTextBoxInfo, "Stopped discovering\n", true);
             }
             Thread findDevices = new Thread(ScanDevices);
             findDevices.Priority = ThreadPriority.Highest;
@@ -98,7 +101,7 @@ namespace Lab6_bluetooth
                 String[] pathSplits = req.RawUrl.Split('/');
                 String file = pathSplits[pathSplits.Length - 1];
                 req.WriteFile(file);
-                richTextBoxInfo.AppendText("File received\n");
+                invoker(richTextBoxInfo, "File received\n", true);
                 listener.Stop();
             }
         }
@@ -113,11 +116,11 @@ namespace Lab6_bluetooth
 
             if (deviceToPair == null)
             {
-                richTextBoxInfo.AppendText("Select device from Discovered devices list\n");
+                invoker(richTextBoxInfo, "Select device from Discovered devices list\n", true);
             }
             else
             {
-                richTextBoxInfo.AppendText("Connecting with: " + (string)deviceToPair.DeviceName + "\n");
+                invoker(richTextBoxInfo, "Connecting with: " + (string)deviceToPair.DeviceName + "\n", true);
                 deviceToPair.Update();
                 deviceToPair.Refresh();
                 deviceToPair.SetServiceState(BluetoothService.ObexObjectPush, true);
@@ -125,7 +128,7 @@ namespace Lab6_bluetooth
                 if (isPaired)
                 {
                     buttonConnection.Text = "Disconnect";
-                    richTextBoxInfo.AppendText("Connected\n");
+                    invoker(richTextBoxInfo, "Connected\n", true);
                     listBoxConnected.Items.Add(deviceToPair.DeviceName);
 
                     Thread receiveFiles = new Thread(ReceiveFiles);
@@ -135,7 +138,7 @@ namespace Lab6_bluetooth
                 }
                 else
                 {
-                    richTextBoxInfo.AppendText("Couldn't connect with the device\n");
+                    invoker(richTextBoxInfo, "Couldn't connect with the device\n", true);
                 }
             }
         }
@@ -148,13 +151,13 @@ namespace Lab6_bluetooth
             if (isUnpaired)
             {
                 buttonConnection.Text = "Connect";
-                richTextBoxInfo.AppendText("Disconnected\n");
+                invoker(richTextBoxInfo, "Disconnected\n", true);
                 listBoxConnected.Items.Remove(deviceToPair.DeviceName);
                 isPaired = false;
             }
             else
             {
-                richTextBoxInfo.AppendText("Couldn't disconnect the device\n");
+                invoker(richTextBoxInfo, "Couldn't disconnect the device\n", true);
             }
         }
 
@@ -198,17 +201,17 @@ namespace Lab6_bluetooth
                 try
                 {
                     if (deviceToPair != null)
-                        richTextBoxInfo.AppendText("Sending the file\n");
+                        invoker(richTextBoxInfo, "Sending the file\n", true);
 
                     var uri = new Uri("obex://" + deviceToPair.DeviceAddress + "/" + file);
                     var request = new ObexWebRequest(uri);
                     request.ReadFile(file);
                     var response = (ObexWebResponse)request.GetResponse();
-                    richTextBoxInfo.AppendText("File send successfully " + file + "\n");
+                    invoker(richTextBoxInfo, "File send successfully " + file + "\n", true);
                 }
                 catch (Exception error)
                 {
-                    richTextBoxInfo.AppendText("ERROR: " + error.Message + "\n");
+                    invoker(richTextBoxInfo, "ERROR: " + error.Message + "\n", true);
                 }
             }
         }
@@ -219,6 +222,24 @@ namespace Lab6_bluetooth
             sendFilesTh.Priority = ThreadPriority.Highest;
             sendFilesTh.IsBackground = true;
             sendFilesTh.Start();
+        }
+
+        void invoker(Control control, string message, bool append)
+        {
+            if (control.InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate () {
+                    invoker(control, message, append);
+                }));
+            }
+            else
+            {
+                if (append)
+                    control.Text += message;
+
+                else
+                    control.Text = message;
+            }
         }
     }
 }
