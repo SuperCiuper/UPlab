@@ -1,5 +1,6 @@
 ﻿using SharpDX.DirectInput;
 using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,11 @@ namespace Lab7_pad {
         private Joystick gamepad;
         private int oldXVal = 32767;
         private DirectInput directInput;
+        private bool painting = true;
+        private Graphics graphics;
+        private SolidBrush solidBrush;
+        private int width = 5;
+
         public Form1() {
             InitializeComponent();
             connectJoystick();
@@ -47,7 +53,9 @@ namespace Lab7_pad {
 
         private void timer_Tick(object sender, EventArgs e) {
             //pollJoystick();
-            richTextBoxConsole.AppendText(Cursor.Position.X.ToString() + " " + Cursor.Position.Y.ToString());
+            //richTextBoxConsole.AppendText(Cursor.Position.X.ToString() + " " + Cursor.Position.Y.ToString());
+
+            solidBrush = new SolidBrush(Color.FromArgb(255, Convert.ToInt32(numericUpDownRed.Value), Convert.ToInt32(numericUpDownGreen.Value), Convert.ToInt32(numericUpDownBlue.Value)));
         }
 
         private void pollJoystick() {
@@ -66,27 +74,37 @@ namespace Lab7_pad {
                 trackBarX.Value++;
             }
 
-            bool buttonOne = state.Buttons[0];
-            if (buttonOne) {
+            if (state.Buttons[0]) {
                 radioButtonBlue.Enabled = true;
                 richTextBoxConsole.AppendText("Red color selected" + "\n");
             }
 
-            var buttonTwo = state.Buttons[1];
-            if (buttonTwo) {
+            if (state.Buttons[1]) {
                 radioButtonGreen.Enabled = true;
                 richTextBoxConsole.AppendText("Green color selected" + "\n");
             }
 
-            var buttonThree = state.Buttons[2];
-            if (buttonThree) {
+            if (state.Buttons[2]) {
                 radioButtonRed.Enabled = true;
                 richTextBoxConsole.AppendText("Red color selected" + "\n");
             }
+
+            if (state.Buttons[4]) {
+                painting = true;
+            } else {
+                painting = false;
+            }
+
+            solidBrush = new SolidBrush(Color.FromArgb(255, Convert.ToInt32(numericUpDownRed.Value), Convert.ToInt32(numericUpDownGreen.Value), Convert.ToInt32(numericUpDownBlue.Value)));
         }
 
         private void panelCanvas_MouseMove(object sender, MouseEventArgs e) {
+            if (painting) {
+                richTextBoxConsole.AppendText("XD ");
 
+                graphics = panelCanvas.CreateGraphics();
+                graphics.FillEllipse(solidBrush, e.X, e.Y, width, width);
+            }
         }
     }
 }

@@ -34,14 +34,14 @@ namespace Lab7_pad {
             this.labelY = new System.Windows.Forms.Label();
             this.trackBarX = new System.Windows.Forms.TrackBar();
             this.panelDrawing = new System.Windows.Forms.Panel();
+            this.radioButtonBlue = new System.Windows.Forms.RadioButton();
+            this.radioButtonGreen = new System.Windows.Forms.RadioButton();
+            this.radioButtonRed = new System.Windows.Forms.RadioButton();
             this.numericUpDownBlue = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownGreen = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownRed = new System.Windows.Forms.NumericUpDown();
             this.labelColor = new System.Windows.Forms.Label();
             this.panelCanvas = new System.Windows.Forms.Panel();
-            this.radioButtonRed = new System.Windows.Forms.RadioButton();
-            this.radioButtonGreen = new System.Windows.Forms.RadioButton();
-            this.radioButtonBlue = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.panelDrawing.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBlue)).BeginInit();
@@ -70,7 +70,6 @@ namespace Lab7_pad {
             // 
             // timer
             // 
-            this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // textBoxX
@@ -135,6 +134,42 @@ namespace Lab7_pad {
             this.panelDrawing.Size = new System.Drawing.Size(576, 411);
             this.panelDrawing.TabIndex = 7;
             // 
+            // radioButtonBlue
+            // 
+            this.radioButtonBlue.AutoSize = true;
+            this.radioButtonBlue.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.radioButtonBlue.Location = new System.Drawing.Point(303, 11);
+            this.radioButtonBlue.Name = "radioButtonBlue";
+            this.radioButtonBlue.Size = new System.Drawing.Size(46, 17);
+            this.radioButtonBlue.TabIndex = 7;
+            this.radioButtonBlue.TabStop = true;
+            this.radioButtonBlue.Text = "Blue";
+            this.radioButtonBlue.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonGreen
+            // 
+            this.radioButtonGreen.AutoSize = true;
+            this.radioButtonGreen.ForeColor = System.Drawing.Color.White;
+            this.radioButtonGreen.Location = new System.Drawing.Point(196, 11);
+            this.radioButtonGreen.Name = "radioButtonGreen";
+            this.radioButtonGreen.Size = new System.Drawing.Size(54, 17);
+            this.radioButtonGreen.TabIndex = 6;
+            this.radioButtonGreen.TabStop = true;
+            this.radioButtonGreen.Text = "Green";
+            this.radioButtonGreen.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonRed
+            // 
+            this.radioButtonRed.AutoSize = true;
+            this.radioButtonRed.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.radioButtonRed.Location = new System.Drawing.Point(98, 11);
+            this.radioButtonRed.Name = "radioButtonRed";
+            this.radioButtonRed.Size = new System.Drawing.Size(45, 17);
+            this.radioButtonRed.TabIndex = 5;
+            this.radioButtonRed.TabStop = true;
+            this.radioButtonRed.Text = "Red";
+            this.radioButtonRed.UseVisualStyleBackColor = true;
+            // 
             // numericUpDownBlue
             // 
             this.numericUpDownBlue.Location = new System.Drawing.Point(256, 11);
@@ -189,42 +224,6 @@ namespace Lab7_pad {
             this.panelCanvas.Size = new System.Drawing.Size(570, 371);
             this.panelCanvas.TabIndex = 0;
             this.panelCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelCanvas_MouseMove);
-            // 
-            // radioButtonRed
-            // 
-            this.radioButtonRed.AutoSize = true;
-            this.radioButtonRed.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButtonRed.Location = new System.Drawing.Point(98, 11);
-            this.radioButtonRed.Name = "radioButtonRed";
-            this.radioButtonRed.Size = new System.Drawing.Size(45, 17);
-            this.radioButtonRed.TabIndex = 5;
-            this.radioButtonRed.TabStop = true;
-            this.radioButtonRed.Text = "Red";
-            this.radioButtonRed.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonGreen
-            // 
-            this.radioButtonGreen.AutoSize = true;
-            this.radioButtonGreen.ForeColor = System.Drawing.Color.White;
-            this.radioButtonGreen.Location = new System.Drawing.Point(196, 11);
-            this.radioButtonGreen.Name = "radioButtonGreen";
-            this.radioButtonGreen.Size = new System.Drawing.Size(54, 17);
-            this.radioButtonGreen.TabIndex = 6;
-            this.radioButtonGreen.TabStop = true;
-            this.radioButtonGreen.Text = "Green";
-            this.radioButtonGreen.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonBlue
-            // 
-            this.radioButtonBlue.AutoSize = true;
-            this.radioButtonBlue.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButtonBlue.Location = new System.Drawing.Point(303, 11);
-            this.radioButtonBlue.Name = "radioButtonBlue";
-            this.radioButtonBlue.Size = new System.Drawing.Size(46, 17);
-            this.radioButtonBlue.TabIndex = 7;
-            this.radioButtonBlue.TabStop = true;
-            this.radioButtonBlue.Text = "Blue";
-            this.radioButtonBlue.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
