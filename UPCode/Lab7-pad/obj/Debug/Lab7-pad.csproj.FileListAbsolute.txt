@@ -1,0 +1,16 @@
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\bin\Debug\Lab7-pad.exe.config
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\bin\Debug\Lab7-pad.exe
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\bin\Debug\Lab7-pad.pdb
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\bin\Debug\SharpDX.DirectInput.dll
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\bin\Debug\SharpDX.dll
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\bin\Debug\SharpDX.pdb
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\bin\Debug\SharpDX.DirectInput.pdb
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\bin\Debug\SharpDX.DirectInput.xml
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\obj\Debug\Lab7-pad.csproj.AssemblyReference.cache
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\obj\Debug\Lab7_pad.Form1.resources
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\obj\Debug\Lab7_pad.Properties.Resources.resources
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\obj\Debug\Lab7-pad.csproj.GenerateResource.cache
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\obj\Debug\Lab7-pad.csproj.CoreCompileInputs.cache
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\obj\Debug\Lab7-pad.csproj.CopyComplete
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\obj\Debug\Lab7-pad.exe
+C:\Users\SuperCiuper\Documents\GitHub\UPlab\UPCode\Lab7-pad\obj\Debug\Lab7-pad.pdb
